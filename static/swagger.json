@@ -1,0 +1,101 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Flask API",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/api/v1/user/login": {
+        "post": {
+          "description": "Verify User Authentication",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "access data",
+              "in": "body",
+              "description": "JSON data for the api",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/verify_auth"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User granted access"
+            },
+            "400": {
+              "description": "Invalid request data"
+            }
+          }
+        }
+      },
+      "/api/v1/user/confirm": {
+        "post": {
+          "description": "User Confirm Code",
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "name": "access data",
+              "in": "body",
+              "description": "JSON data for the api",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/verify_confirm_code"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User granted access"
+            },
+            "400": {
+              "description": "Invalid request data"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "verify_auth": {
+        "type": "object",
+        "properties": {
+          "uname": {
+            "type": "string",
+            "example": "admin"
+          },
+          "upass": {
+            "type": "string",
+            "example": "123456"
+          }
+        }
+      },
+      "verify_confirm_code": {
+        "type": "object",
+        "properties": {
+          "uname": {
+            "type": "string",
+            "example": "admin"
+          },
+          "upass": {
+            "type": "string",
+            "example": "123456"
+          },
+          "confirm_code": {
+            "type": "string",
+            "example": "666666"
+          }
+        }
+      }
+    }
+  }
